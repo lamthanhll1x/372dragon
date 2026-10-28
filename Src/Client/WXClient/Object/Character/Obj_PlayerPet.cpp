@@ -22,7 +22,8 @@
 #include "..\..\Event\GMEventSystem.h"
 
 
-TD_IMPLEMENT_DYNAMIC(CObject_PlayerPet, GETCLASS(CObject_PlayerNPC));
+// CYS-FIX: dung WX_IMPLEMENT_DYNAMIC theo engine hien tai (TDClass.h)
+WX_IMPLEMENT_DYNAMIC(CObject_PlayerPet, GETCLASS(CObject_PlayerNPC));
 CObject_PlayerPet::CObject_PlayerPet()
 {
 	m_fDebugRate = 1.4f;

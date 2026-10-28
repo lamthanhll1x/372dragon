@@ -1,4 +1,7 @@
 ﻿// DetailAttrib_Player.cpp
+// CYS-NOTE: ORPHAN-BY-DESIGN. File nay la ban copy cua DetailAttrib_Player.cpp va dinh nghia
+// CDetailAttrib_Player::... trung voi DetailAttrib_Player.cpp dang duoc build -> KHONG them vao
+// wxclient.cmake (se loi link LNK2005). He thong pet hien dai dung CysPetNet.cpp + pg::GCDetailAttrib_Pet.
 
 #include "StdAfx.h"
 #include "TDTimeSystem.h"

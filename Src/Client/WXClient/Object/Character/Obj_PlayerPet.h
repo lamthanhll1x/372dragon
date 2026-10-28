@@ -10,7 +10,8 @@ class CObject_PlayerPet : public CObject_PlayerNPC
 {
 public:
 	//返回角色类型
-	virtual CHARACTER_TYPE	GetCharacterType( VOID ) const { return CT_PLAYERPET;	}
+	// CYS-FIX: enum CHARACTER_TYPE khong co CT_PLAYERPET -> dung CT_MONSTER nhu NPC
+	virtual CHARACTER_TYPE	GetCharacterType( VOID ) const { return CT_MONSTER;	}
 
 	//------------------------------------------
 	//逻辑数据发生改变
@@ -48,6 +49,6 @@ public:
 	virtual VOID			Tick(VOID);
 
 protected:
-	TD_DECLARE_DYNAMIC(CObject_PlayerPet);
-	TD_DECLARE_LOGICAL(true);
+	// CYS-FIX: macro TD_* da bi engine go; dung WX_* (TDClass.h). TD_DECLARE_LOGICAL cung da bi comment out.
+	WX_DECLARE_DYNAMIC(CObject_PlayerPet);
 };

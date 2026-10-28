@@ -45,6 +45,7 @@ add_executable(cys_wxclient WIN32
     "${_cys_wxcl}/DataPool/GMDP_Struct_Relation.cpp"
     "${_cys_wxcl}/DataPool/GMDP_Struct_Skill.cpp"
     "${_cys_wxcl}/DataPool/GMUIDataPool.cpp"
+    "${_cys_wxcl}/DataPool/MissionDataMgr.cpp"
     "${_cys_wxcl}/DataPool/TeamOrGroup.cpp"
     "${_cys_wxcl}/DBC/GMDataBase.cpp"
     "${_cys_wxcl}/Event/GMEventSystem.cpp"
