@@ -132,5 +132,6 @@ private:
 	POINT				m_ptMouseRDown;
 
 protected:
-	TD_DECLARE_DYNAMIC(CInputManager);
+	// CYS-FIX: TD_DECLARE_DYNAMIC da bi engine go -> dung WX_DECLARE_DYNAMIC
+	WX_DECLARE_DYNAMIC(CInputManager);
 };

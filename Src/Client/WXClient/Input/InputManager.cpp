@@ -9,7 +9,8 @@
 #define _IsKeyDown(exp)		(GetAsyncKeyState(exp) & 0xff00)
 #define _IsKeyDowned(exp)	(GetAsyncKeyState(exp) & 0x00ff)
 
-TD_IMPLEMENT_DYNAMIC(CInputManager, GETCLASS(tInputSystem));
+// CYS-FIX: dung WX_IMPLEMENT_DYNAMIC theo engine hien tai
+WX_IMPLEMENT_DYNAMIC(CInputManager, GETCLASS(tInputSystem));
 CInputManager* CInputManager::s_pMe = NULL;
 CInputManager::CInputManager()
 {

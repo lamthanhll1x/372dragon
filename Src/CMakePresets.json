@@ -1,0 +1,58 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 25, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "description": "Nen cho moi preset: Ninja + MSVC (goi trong ham vcvarsall cua Tools/build/build.cmd hoac prompt VS 2022). Cac preset KHONG the hardcode duong dan cmake/ninja cua BuildTools o day; dung 'cmake --preset <ten>' tu prompt da co MSVC. Tree dat ben ngoai Build/cmake/<name> de khong de nhau.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../Build/cmake/${presetName}",
+      "toolchainFile": "$env{CYS_TOOLCHAIN}"
+    },
+    {
+      "name": "client-x64",
+      "displayName": "Client x64 Release (Game.exe + Render.dll + UI_CEGUI.dll)",
+      "description": "Toan bo chuoi phu thu cua client, khong viewer/test/chan doan. Thu tu = CYS_ALL_COMPONENTS (thứ tự phụ thuộc). Chi tiết: Docs/12-CAU-HINH-BUILD-CLIENT_vi.md.",
+      "inherits": "base",
+      "architecture": { "value": "x64", "strategy": "external" },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CYS_COMPONENTS": "zlib;zziplib;freetype;devil;ogremain;ogre_d3d9;ogre_plugins;opcode;tinyxml;expat;scorpio;particlefx2;wxengine;wxcore;wxrender;pathlib;cegui;falagardex;luaplus;uisystem;wxnetpackets;protocolgen;netcore;wxclient"
+      }
+    },
+    {
+      "name": "game-exe-x64",
+      "displayName": "Game.exe x64 Release (nhanh, dung tree coord-x64 cu)",
+      "description": "Bang 'build.cmd x64 coord-x64 Release \"\" cys_wxclient'. LUU Y: Game.exe nap Render/UI luc chay, build rieng target nay khong dung nghia DLL render/UI da duoc dung lai - muon chac dung client-x64 hoac CI. Plan build: cmake --build --preset game-exe-x64 --target cys_wxclient",
+      "inherits": "client-x64",
+      "binaryDir": "${sourceDir}/../Build/cmake/coord-x64"
+    },
+    {
+      "name": "client-x64-debug",
+      "displayName": "Client x64 Debug",
+      "description": "Cung chuoi client-x64 nhung /MDd + khong NDEBUG. Plan build: cmake --build --preset client-x64-debug",
+      "inherits": "client-x64",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "all-x64",
+      "displayName": "Toan cay x64 Release (như ci.ps1: moi component)",
+      "description": "Khong dat CYS_COMPONENTS => mac dinh = CYS_ALL_COMPONENTS (33). Gom ca viewer, test app, d3d9trace; stage.ps1 se chep het bin/ nen chi dung khi CI/kien toan. Plan build: cmake --build --preset all-x64",
+      "inherits": "base",
+      "architecture": { "value": "x64", "strategy": "external" },
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "client-x64", "configurePreset": "client-x64", "jobs": 8 },
+    { "name": "client-x64-debug", "configurePreset": "client-x64-debug", "jobs": 8 },
+    { "name": "all-x64", "configurePreset": "all-x64", "jobs": 8 },
+    {
+      "name": "game-exe-x64",
+      "configurePreset": "game-exe-x64",
+      "targets": ["cys_wxclient"],
+      "jobs": 8
+    }
+  ]
+}
