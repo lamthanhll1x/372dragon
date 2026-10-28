@@ -5,7 +5,7 @@
 <h1 align="center">372 dragon</h1>
 
 <p align="center">
-  <strong>Mã nguồn client TLBB x64, server Skynet/Lua và công cụ phát triển.</strong><br>
+  <strong>Mã nguồn client TLBB x64, server Skynet/Lua và công cụ phát triển123.</strong><br>
   Đọc mã · Hiểu hệ thống · Build · Kiểm thử
 </p>
 
